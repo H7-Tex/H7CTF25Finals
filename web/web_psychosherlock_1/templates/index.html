@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RelayGrid - Home</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/static/favicon_io/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon_io/site.webmanifest" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .gradient-bg {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #0c4a6e, #075985);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+      }
+
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+      }
+
+      .btn-glow {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        transition: all 0.3s ease;
+      }
+
+      .btn-glow:hover {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen text-gray-100">
+    <!-- Navigation -->
+    <nav class="glass-effect shadow-2xl sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="/"
+            class="flex items-center gap-3 hover:scale-105 transition-transform duration-300"
+          >
+            <img
+              src="/static/profile_pics/relaymailgrid.png"
+              alt="RelayGrid Logo"
+              class="h-10 w-10 rounded-lg"
+            />
+            <span
+              class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"
+              >RelayGrid</span
+            >
+          </a>
+          <div class="flex gap-3">
+            <a
+              href="/login"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+            >
+              Login
+            </a>
+            <a
+              href="/signup"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 font-semibold shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
+            >
+              Signup
+            </a>
+            <a
+              href="/faq"
+              class="px-6 py-2.5 rounded-lg border-2 border-blue-500 hover:bg-blue-500/20 font-semibold transition-all duration-300"
+            >
+              FAQ
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-20">
+      <section class="text-center max-w-5xl mx-auto">
+        <!-- Main Hero Card -->
+        <div
+          class="glass-effect rounded-3xl shadow-2xl p-12 mb-12 card-hover"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+        >
+          <h1
+            class="text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate__animated animate__fadeInDown"
+          >
+            Welcome to RelayGrid
+          </h1>
+          <p
+            class="text-2xl mb-8 text-gray-300 leading-relaxed animate__animated animate__fadeInUp"
+          >
+            Your emails, delivered faster than a caffeinated courier on a
+            skateboard.
+          </p>
+          <p class="text-lg mb-10 text-gray-400 italic">
+            Professional email service with a side of convenience.
+          </p>
+          <a
+            href="/signup"
+            class="inline-block px-10 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold text-xl btn-glow"
+          >
+            Get Started
+          </a>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="grid md:grid-cols-3 gap-6 mt-16">
+          <div
+            class="glass-effect rounded-2xl p-8 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="text-5xl mb-4">⚡</div>
+            <h3 class="text-xl font-bold mb-3 text-blue-300">Lightning Fast</h3>
+            <p class="text-gray-400">
+              Send and receive emails in milliseconds. Your inbox updates faster
+              than you can refresh.
+            </p>
+          </div>
+
+          <div
+            class="glass-effect rounded-2xl p-8 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="text-5xl mb-4">🔒</div>
+            <h3 class="text-xl font-bold mb-3 text-cyan-300">Secure</h3>
+            <p class="text-gray-400">
+              End-to-end encryption keeps your messages private. Your secrets
+              are safe with us.
+            </p>
+          </div>
+
+          <div
+            class="glass-effect rounded-2xl p-8 card-hover"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="text-5xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold mb-3 text-purple-300">Reliable</h3>
+            <p class="text-gray-400">
+              99.9% uptime guarantee. Your emails arrive on time, every time.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="glass-effect mt-20 py-8 border-t border-blue-500/30"
+      data-aos="fade-up"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-gray-400">&copy; 2025 RelayGrid. All rights reserved.</p>
+        <p class="text-gray-500 text-sm mt-2">
+          Powered by coffee and questionable life choices.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: true,
+        duration: 800,
+        easing: "ease-out-cubic",
+      });
+    </script>
+  </body>
+</html>

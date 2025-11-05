@@ -1,0 +1,8 @@
+python-dotenv
+flask
+werkzeug
+pillow
+captcha
+beautifulsoup4
+requests
+gunicorn

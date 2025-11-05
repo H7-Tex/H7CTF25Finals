@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - RelayGrid</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/static/favicon_io/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon_io/site.webmanifest" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 60%,
+          #0ea5e9 100%
+        );
+        min-height: 100vh;
+      }
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      .btn-glow {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        transition: all 0.3s ease;
+      }
+      .btn-glow:hover {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+        transform: translateY(-2px);
+      }
+      .setting-card {
+        transition: all 0.3s ease;
+      }
+      .setting-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+      }
+      .input-glow:focus {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen text-gray-100">
+    <!-- Navigation -->
+    <nav class="glass-effect shadow-2xl sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="/"
+            class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+          >
+            RelayGrid
+          </a>
+          <div class="flex gap-3 items-center">
+            <a
+              href="/dashboard"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+            >
+              Dashboard
+            </a>
+            <a
+              href="/logout"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 font-semibold shadow-lg hover:shadow-red-500/50 transition-all duration-300"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Alert Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="mx-6 mt-4 px-4 py-3 rounded-lg text-center animate__animated animate__slideInDown {% if category == 'success' %} bg-green-900/50 border-2 border-green-500 text-green-300 {% elif category == 'danger' %} bg-red-900/50 border-2 border-red-500 text-red-300 {% elif category == 'warning' %} bg-yellow-900/50 border-2 border-yellow-500 text-yellow-300 {% else %} bg-blue-900/50 border-2 border-blue-500 text-blue-300 {% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8" data-aos="fade-down">
+          <h1
+            class="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-2"
+          >
+            Account Settings
+          </h1>
+          <p class="text-gray-400">Manage your RelayGrid account preferences</p>
+        </div>
+
+        <!-- Current User Info -->
+        <div
+          class="glass-effect rounded-2xl p-6 mb-6 border-2 border-cyan-500/30"
+          data-aos="fade-up"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center justify-center text-2xl font-bold"
+            >
+              {{ username[0].upper() }}
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-white">{{ username }}</h2>
+              <p class="text-cyan-400">{{ email }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Cards -->
+        <div class="space-y-6">
+          <!-- Change Username -->
+          <div
+            class="glass-effect rounded-2xl p-6 setting-card"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Change Username
+                </h3>
+                <p class="text-gray-400 mb-4">Update your display name</p>
+                <form id="usernameForm" class="space-y-3">
+                  <input
+                    type="text"
+                    id="new-username"
+                    class="w-full px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white input-glow"
+                    placeholder="Enter new username"
+                    value="{{ username }}"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 font-semibold shadow-lg hover:shadow-purple-500/50 transition-all duration-300"
+                  >
+                    Update Username
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Change Password -->
+          <div
+            class="glass-effect rounded-2xl p-6 setting-card"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Change Password
+                </h3>
+                <p class="text-gray-400 mb-4">
+                  Keep your account secure with a strong password
+                </p>
+                <form id="passwordForm" class="space-y-3">
+                  <input
+                    type="password"
+                    id="current-password"
+                    class="w-full px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white input-glow"
+                    placeholder="Current password"
+                    required
+                  />
+                  <input
+                    type="password"
+                    id="new-password"
+                    class="w-full px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white input-glow"
+                    placeholder="New password (min 6 characters)"
+                    required
+                  />
+                  <button
+                    type="submit"
+                    class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 font-semibold shadow-lg hover:shadow-orange-500/50 transition-all duration-300"
+                  >
+                    Update Password
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recovery Email -->
+          <div
+            class="glass-effect rounded-2xl p-6 setting-card"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-600 to-teal-600 flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <h3 class="text-xl font-bold text-white mb-2">
+                  Recovery Email
+                </h3>
+                <p class="text-gray-400 mb-4">
+                  Add a backup RelayGrid email for account recovery
+                </p>
+                <form id="recoveryForm" class="space-y-3">
+                  <div class="flex gap-2">
+                    <input
+                      type="text"
+                      id="recovery-email"
+                      class="flex-1 px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white input-glow"
+                      placeholder="username"
+                      value="{% if recovery_email %}{{ recovery_email.replace('@relaymailgrid.com', '') }}{% endif %}"
+                    />
+                    <span
+                      class="flex items-center px-4 py-3 bg-slate-900 rounded-lg text-gray-400"
+                      >@relaymailgrid.com</span
+                    >
+                  </div>
+                  <div class="flex gap-3">
+                    <button
+                      type="submit"
+                      class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 font-semibold shadow-lg hover:shadow-green-500/50 transition-all duration-300"
+                    >
+                      Update Recovery Email
+                    </button>
+                    {% if recovery_email %}
+                    <button
+                      type="button"
+                      onclick="removeRecoveryEmail()"
+                      class="px-6 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-600 font-semibold transition-all duration-300"
+                    >
+                      Remove
+                    </button>
+                    {% endif %}
+                  </div>
+                  <p class="text-sm text-gray-500">
+                    Recovery email must be an existing RelayGrid account
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
+
+      // Update Username
+      document
+        .getElementById("usernameForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const username = document.getElementById("new-username").value.trim();
+
+          if (!username || username.length < 3) {
+            alert("Username must be at least 3 characters long");
+            return;
+          }
+
+          try {
+            const response = await fetch("/update_username", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ username }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+              alert("Username updated successfully!");
+              location.reload();
+            } else {
+              alert("Error: " + data.error);
+            }
+          } catch (err) {
+            alert("Failed to update username");
+          }
+        });
+
+      // Update Password
+      document
+        .getElementById("passwordForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const currentPassword =
+            document.getElementById("current-password").value;
+          const newPassword = document.getElementById("new-password").value;
+
+          if (!currentPassword || !newPassword) {
+            alert("Please fill in all fields");
+            return;
+          }
+
+          if (newPassword.length < 6) {
+            alert("New password must be at least 6 characters long");
+            return;
+          }
+
+          try {
+            const response = await fetch("/update_password", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                current_password: currentPassword,
+                new_password: newPassword,
+              }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+              alert("Password updated successfully!");
+              document.getElementById("passwordForm").reset();
+            } else {
+              alert("Error: " + data.error);
+            }
+          } catch (err) {
+            alert("Failed to update password");
+          }
+        });
+
+      // Update Recovery Email
+      document
+        .getElementById("recoveryForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const recoveryEmail = document
+            .getElementById("recovery-email")
+            .value.trim()
+            .toLowerCase();
+
+          try {
+            const response = await fetch("/update_recovery_email", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ recovery_email: recoveryEmail }),
+            });
+            const data = await response.json();
+
+            if (data.success) {
+              alert("Recovery email updated successfully!");
+              location.reload();
+            } else {
+              alert("Error: " + data.error);
+            }
+          } catch (err) {
+            alert("Failed to update recovery email");
+          }
+        });
+
+      // Remove Recovery Email
+      async function removeRecoveryEmail() {
+        if (!confirm("Are you sure you want to remove your recovery email?"))
+          return;
+
+        try {
+          const response = await fetch("/update_recovery_email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ recovery_email: "" }),
+          });
+          const data = await response.json();
+
+          if (data.success) {
+            alert("Recovery email removed successfully!");
+            location.reload();
+          } else {
+            alert("Error: " + data.error);
+          }
+        } catch (err) {
+          alert("Failed to remove recovery email");
+        }
+      }
+    </script>
+  </body>
+</html>

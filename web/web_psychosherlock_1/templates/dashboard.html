@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - RelayGrid</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/static/favicon_io/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon_io/site.webmanifest" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 60%,
+          #0ea5e9 100%
+        );
+        min-height: 100vh;
+      }
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      .btn-glow {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        transition: all 0.3s ease;
+      }
+      .btn-glow:hover {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+        transform: translateY(-2px);
+      }
+      .email-item {
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .email-item:hover {
+        background: rgba(59, 130, 246, 0.15);
+        transform: translateX(5px);
+      }
+      .email-unread {
+        background: rgba(14, 165, 233, 0.1);
+        border-left: 4px solid #0ea5e9;
+      }
+      .email-read {
+        opacity: 0.7;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        animation: fadeIn 0.3s;
+      }
+      .modal-content {
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        margin: 5% auto;
+        padding: 0;
+        border: 2px solid rgba(59, 130, 246, 0.5);
+        border-radius: 20px;
+        width: 90%;
+        max-width: 700px;
+        max-height: 85vh;
+        overflow: hidden;
+        animation: slideDown 0.4s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      .close-btn {
+        color: #94a3b8;
+        font-size: 32px;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      .close-btn:hover {
+        color: #ef4444;
+      }
+      .tab-btn {
+        transition: all 0.3s;
+        border-bottom: 3px solid transparent;
+      }
+      .tab-btn.active {
+        border-bottom-color: #0ea5e9;
+        color: #0ea5e9;
+      }
+      .delete-btn {
+        opacity: 0;
+        transition: all 0.3s;
+      }
+      .email-item:hover .delete-btn {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen text-gray-100">
+    <!-- Navigation -->
+    <nav class="glass-effect shadow-2xl sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="/"
+            class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+          >
+            RelayGrid
+          </a>
+          <div class="flex gap-3 items-center">
+            {% if profile_pic %}
+            <img
+              src="/static/profile_pics/{{ profile_pic }}"
+              alt="Profile"
+              class="w-10 h-10 rounded-full border-2 border-cyan-400 shadow mr-2"
+            />
+            {% else %}
+            <div
+              class="w-10 h-10 rounded-full bg-slate-700 border-2 border-cyan-400 flex items-center justify-center mr-2 text-cyan-400 font-bold"
+            >
+              ?
+            </div>
+            {% endif %}
+            <span class="px-4 py-2 text-cyan-400 font-semibold"
+              >{{ username }}</span
+            >
+            <span
+              class="px-3 py-1 text-sm text-gray-400 bg-slate-800 rounded-lg"
+              >{{ user_email }}</span
+            >
+            <a
+              href="/settings"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 font-semibold shadow-lg hover:shadow-gray-500/50 transition-all duration-300"
+            >
+              Settings
+            </a>
+            <a
+              href="/logout"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 font-semibold shadow-lg hover:shadow-red-500/50 transition-all duration-300"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Alert Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="mx-6 mt-4 px-4 py-3 rounded-lg text-center animate__animated animate__slideInDown {% if category == 'success' %} bg-green-900/50 border-2 border-green-500 text-green-300 {% elif category == 'danger' %} bg-red-900/50 border-2 border-red-500 text-red-300 {% elif category == 'warning' %} bg-yellow-900/50 border-2 border-yellow-500 text-yellow-300 {% else %} bg-blue-900/50 border-2 border-blue-500 text-blue-300 {% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+      <div class="glass-effect rounded-3xl shadow-2xl p-8">
+        <!-- Settings/Profile Pic Upload -->
+        <div class="flex justify-end mb-4">
+          <form
+            id="profilePicForm"
+            enctype="multipart/form-data"
+            class="flex items-center gap-3"
+            onsubmit="uploadProfilePic(event)"
+          >
+            <label
+              class="cursor-pointer flex items-center gap-2 text-cyan-400 font-semibold"
+            >
+              {% if profile_pic %}
+              <img
+                src="/static/profile_pics/{{ profile_pic }}"
+                alt="Profile"
+                class="w-10 h-10 rounded-full border-2 border-cyan-400 shadow"
+              />
+              {% else %}
+              <div
+                class="w-10 h-10 rounded-full bg-slate-700 border-2 border-cyan-400 flex items-center justify-center text-cyan-400 font-bold"
+              >
+                ?
+              </div>
+              {% endif %}
+              <span>Change Picture</span>
+              <input
+                type="file"
+                name="profile_pic"
+                id="profile_pic"
+                accept="image/*"
+                class="hidden"
+              />
+            </label>
+            <button
+              type="submit"
+              class="px-4 py-2 rounded-lg bg-cyan-700 hover:bg-cyan-800 font-semibold text-white"
+            >
+              Upload
+            </button>
+          </form>
+        </div>
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h1
+              class="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent"
+            >
+              Mail Dashboard
+            </h1>
+            <p class="text-gray-400 mt-2">Manage your RelayGrid messages</p>
+          </div>
+          <button
+            onclick="openComposeModal()"
+            class="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 font-semibold shadow-lg btn-glow"
+          >
+            <svg
+              class="inline-block w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              ></path>
+            </svg>
+            Compose
+          </button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex gap-6 mb-6 border-b border-gray-700">
+          <button
+            class="tab-btn active px-4 py-3 font-semibold"
+            onclick="switchTab('inbox')"
+            id="inbox-tab"
+          >
+            Inbox ({{ emails|length }})
+          </button>
+          <button
+            class="tab-btn px-4 py-3 font-semibold"
+            onclick="switchTab('sent')"
+            id="sent-tab"
+          >
+            Sent
+          </button>
+        </div>
+
+        <!-- Inbox View -->
+        <div id="inbox-view" class="space-y-2">
+          <!-- Emails will be rendered here by JavaScript -->
+        </div>
+
+        <!-- Sent View -->
+        <div id="sent-view" class="space-y-2" style="display: none">
+          <div class="text-center py-16">
+            <svg
+              class="w-24 h-24 mx-auto text-gray-600 mb-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              ></path>
+            </svg>
+            <p class="text-gray-400 text-lg">Loading sent emails...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- View Email Modal -->
+    <div id="viewModal" class="modal">
+      <div class="modal-content">
+        <div
+          class="flex justify-between items-center p-6 border-b border-gray-700"
+        >
+          <h2 class="text-2xl font-bold text-cyan-400" id="modal-subject">
+            Email Subject
+          </h2>
+          <button class="close-btn" onclick="closeViewModal()">&times;</button>
+        </div>
+        <div class="p-6 overflow-y-auto" style="max-height: 65vh">
+          <div class="mb-4 pb-4 border-b border-gray-700">
+            <div class="flex justify-between items-start mb-2">
+              <div class="flex items-center gap-3">
+                <p class="text-sm text-gray-400">From:</p>
+                <img
+                  id="modal-sender-pic"
+                  src=""
+                  alt="Sender"
+                  class="w-8 h-8 rounded-full border-2 border-cyan-400"
+                  style="display: none"
+                />
+                <p class="text-cyan-400 font-semibold" id="modal-sender">
+                  sender@relaymailgrid.com
+                </p>
+              </div>
+              <p class="text-sm text-gray-500" id="modal-timestamp">
+                2024-01-01 12:00:00
+              </p>
+            </div>
+            <div class="mt-3 flex items-center gap-3">
+              <p class="text-sm text-gray-400">To:</p>
+              <img
+                id="modal-receiver-pic"
+                src=""
+                alt="Receiver"
+                class="w-8 h-8 rounded-full border-2 border-cyan-400"
+                style="display: none"
+              />
+              <p class="text-gray-300" id="modal-receiver">
+                receiver@email.com
+              </p>
+            </div>
+          </div>
+          <div class="bg-slate-900/50 p-6 rounded-xl">
+            <p
+              class="text-gray-200 whitespace-pre-wrap leading-relaxed"
+              id="modal-body"
+            >
+              Email body content...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Compose Email Modal -->
+    <div id="composeModal" class="modal">
+      <div class="modal-content">
+        <div
+          class="flex justify-between items-center p-6 border-b border-gray-700"
+        >
+          <h2 class="text-2xl font-bold text-cyan-400">Compose Email</h2>
+          <button class="close-btn" onclick="closeComposeModal()">
+            &times;
+          </button>
+        </div>
+        <div class="p-6">
+          <form id="composeForm" onsubmit="sendEmail(event)">
+            <div class="mb-4">
+              <label class="block text-gray-300 font-semibold mb-2">To:</label>
+              <div class="flex gap-2">
+                <input
+                  type="text"
+                  id="receiver"
+                  class="flex-1 px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white"
+                  placeholder="username"
+                  required
+                />
+                <span
+                  class="flex items-center px-4 py-3 bg-slate-900 rounded-lg text-gray-400"
+                  >@relaymailgrid.com</span
+                >
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-300 font-semibold mb-2"
+                >Subject:</label
+              >
+              <input
+                type="text"
+                id="subject"
+                maxlength="120"
+                class="w-full px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white"
+                placeholder="Enter subject (max 120 chars)"
+                required
+              />
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-300 font-semibold mb-2"
+                >Message:</label
+              >
+              <textarea
+                id="body"
+                rows="10"
+                maxlength="2000"
+                class="w-full px-4 py-3 bg-slate-800 border-2 border-gray-700 rounded-lg focus:border-cyan-500 focus:outline-none text-white resize-none"
+                placeholder="Type your message here... (max 2000 chars)"
+                required
+              ></textarea>
+            </div>
+            <div class="flex gap-3 justify-end">
+              <button
+                type="button"
+                onclick="closeComposeModal()"
+                class="px-6 py-3 rounded-lg bg-gray-700 hover:bg-gray-600 font-semibold transition-all"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                class="px-8 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 font-semibold shadow-lg btn-glow"
+              >
+                Send Email
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      AOS.init({ duration: 800, once: true });
+
+      // Pagination variables
+      let inboxEmails = [];
+      let sentEmails = [];
+      const pageSize = 10;
+
+      function escapeHtml(text) {
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      // Load inbox emails on page load
+      document.addEventListener('DOMContentLoaded', function() {
+        inboxEmails = [];
+        {% if emails %}
+        {% for email in emails %}
+        inboxEmails.push([{{ email[0] }}, "{{ email[1]|e }}", "{{ email[2]|e }}", "{{ email[3]|e }}", {{ email[4] }}]);
+        {% endfor %}
+        {% endif %}
+        renderInboxEmails(1);
+      });
+
+      // Render inbox emails with pagination
+      function renderInboxEmails(page = 1) {
+        const inboxView = document.getElementById("inbox-view");
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+        const emails = inboxEmails.slice(start, end);
+
+        let html = '';
+        if (emails.length === 0) {
+          html = `<div class="text-center py-16">
+            <svg class="w-24 h-24 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+            </svg>
+            <p class="text-gray-400 text-lg">Your inbox is empty. Time to network!</p>
+          </div>`;
+        } else {
+          html = emails.map(email => `
+            <div class="email-item p-4 rounded-xl border border-gray-700 ${email[4] == 0 ? 'email-unread' : 'email-read'}" onclick="viewEmail(${email[0]})">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="font-semibold text-cyan-400">${escapeHtml(email[1])}</span>
+                    ${email[4] == 0 ? '<span class="px-2 py-0.5 bg-blue-600 text-xs rounded-full">New</span>' : ''}
+                  </div>
+                  <h3 class="font-semibold text-lg mb-1">${escapeHtml(email[2])}</h3>
+                  <p class="text-gray-400 text-sm">${escapeHtml(email[3])}</p>
+                </div>
+                <button onclick="event.stopPropagation(); deleteEmail(${email[0]})" class="delete-btn px-3 py-2 text-red-400 hover:text-red-300 hover:bg-red-900/30 rounded-lg transition-all" title="Delete">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Pagination controls
+        const totalPages = Math.ceil(inboxEmails.length / pageSize);
+        if (totalPages > 1) {
+          html += '<div class="flex justify-center mt-6 gap-2">';
+          for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="px-4 py-2 rounded-lg font-semibold transition-all ${i === page ? 'bg-cyan-600 text-white' : 'bg-slate-700 text-cyan-400 hover:bg-slate-600'}" onclick="renderInboxEmails(${i})">${i}</button>`;
+          }
+          html += '</div>';
+        }
+        inboxView.innerHTML = html;
+      }
+
+      // Render sent emails with pagination
+      function renderSentEmails(page = 1) {
+        const sentView = document.getElementById("sent-view");
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+        const emails = sentEmails.slice(start, end);
+
+        let html = '';
+        if (emails.length === 0) {
+          html = `<div class="text-center py-16">
+            <svg class="w-24 h-24 mx-auto text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+            <p class="text-gray-400 text-lg">No sent emails yet. Start composing!</p>
+          </div>`;
+        } else {
+          html = emails.map(email => `
+            <div class="email-item p-4 rounded-xl border border-gray-700" onclick="viewEmail(${email.id})">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center gap-3 mb-2">
+                    <span class="text-sm text-gray-400">To:</span>
+                    <span class="font-semibold text-cyan-400">${escapeHtml(email.receiver)}</span>
+                  </div>
+                  <h3 class="font-semibold text-lg mb-1">${escapeHtml(email.subject)}</h3>
+                  <p class="text-gray-400 text-sm">${escapeHtml(email.timestamp)}</p>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+
+        // Pagination controls
+        const totalPages = Math.ceil(sentEmails.length / pageSize);
+        if (totalPages > 1) {
+          html += '<div class="flex justify-center mt-6 gap-2">';
+          for (let i = 1; i <= totalPages; i++) {
+            html += `<button class="px-4 py-2 rounded-lg font-semibold transition-all ${i === page ? 'bg-cyan-600 text-white' : 'bg-slate-700 text-cyan-400 hover:bg-slate-600'}" onclick="renderSentEmails(${i})">${i}</button>`;
+          }
+          html += '</div>';
+        }
+        sentView.innerHTML = html;
+      }
+
+      function switchTab(tab) {
+        const inboxTab = document.getElementById("inbox-tab");
+        const sentTab = document.getElementById("sent-tab");
+        const inboxView = document.getElementById("inbox-view");
+        const sentView = document.getElementById("sent-view");
+
+        if (tab === "inbox") {
+          inboxTab.classList.add("active");
+          sentTab.classList.remove("active");
+          inboxView.style.display = "block";
+          sentView.style.display = "none";
+          renderInboxEmails(1);
+        } else {
+          sentTab.classList.add("active");
+          inboxTab.classList.remove("active");
+          sentView.style.display = "block";
+          inboxView.style.display = "none";
+          loadSentEmails();
+        }
+      }
+
+      function loadSentEmails() {
+        fetch("/sent_emails")
+          .then((res) => res.json())
+          .then((emails) => {
+            sentEmails = emails;
+            renderSentEmails(1);
+          });
+      }
+
+      function viewEmail(emailId) {
+        fetch(`/email/${emailId}`)
+          .then((res) => res.json())
+          .then((email) => {
+            document.getElementById("modal-subject").textContent =
+              email.subject;
+            document.getElementById("modal-sender").textContent = email.sender;
+            document.getElementById("modal-receiver").textContent =
+              email.receiver;
+            document.getElementById("modal-timestamp").textContent =
+              email.timestamp;
+            document.getElementById("modal-body").textContent = email.body;
+            // Profile pics
+            if (email.sender_pic) {
+              document.getElementById(
+                "modal-sender-pic"
+              ).src = `/static/profile_pics/${email.sender_pic}`;
+              document.getElementById("modal-sender-pic").style.display =
+                "inline-block";
+            } else {
+              document.getElementById("modal-sender-pic").style.display =
+                "none";
+            }
+            if (email.receiver_pic) {
+              document.getElementById(
+                "modal-receiver-pic"
+              ).src = `/static/profile_pics/${email.receiver_pic}`;
+              document.getElementById("modal-receiver-pic").style.display =
+                "inline-block";
+            } else {
+              document.getElementById("modal-receiver-pic").style.display =
+                "none";
+            }
+            document.getElementById("viewModal").style.display = "block";
+            const emailElement = document.querySelector(
+              `[onclick="viewEmail(${emailId})"]`
+            );
+            if (
+              emailElement &&
+              emailElement.classList.contains("email-unread")
+            ) {
+              emailElement.classList.remove("email-unread");
+              emailElement.classList.add("email-read");
+              const newBadge = emailElement.querySelector(".px-2.py-0\\.5");
+              if (newBadge) newBadge.remove();
+            }
+          });
+      }
+      function uploadProfilePic(event) {
+        event.preventDefault();
+        const form = document.getElementById("profilePicForm");
+        const fileInput = document.getElementById("profile_pic");
+        if (!fileInput.files.length) {
+          alert("Please select a file.");
+          return;
+        }
+        const formData = new FormData();
+        formData.append("profile_pic", fileInput.files[0]);
+        fetch("/upload_profile_pic", {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              alert("Profile picture updated!");
+              location.reload();
+            } else {
+              alert("Error: " + data.error);
+            }
+          })
+          .catch(() => alert("Failed to upload profile picture."));
+      }
+
+      function closeViewModal() {
+        document.getElementById("viewModal").style.display = "none";
+      }
+
+      function openComposeModal() {
+        document.getElementById("composeModal").style.display = "block";
+      }
+
+      function closeComposeModal() {
+        document.getElementById("composeModal").style.display = "none";
+        document.getElementById("composeForm").reset();
+      }
+
+      function sendEmail(event) {
+        event.preventDefault();
+        const receiver = document.getElementById("receiver").value;
+        const subject = document.getElementById("subject").value;
+        const body = document.getElementById("body").value;
+
+        if (subject.length > 120) {
+          alert("Subject too long (max 120 characters).");
+          return;
+        }
+        if (body.length > 2000) {
+          alert("Message body too long (max 2000 characters).");
+          return;
+        }
+
+        fetch("/send_email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ receiver, subject, body }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              closeComposeModal();
+              alert("Email sent successfully!");
+              location.reload();
+            } else {
+              alert("Error: " + data.error);
+            }
+          })
+          .catch((err) => alert("Failed to send email"));
+      }
+
+      function deleteEmail(emailId) {
+        if (!confirm("Are you sure you want to delete this email?")) return;
+
+        fetch(`/delete_email/${emailId}`, { method: "POST" })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              location.reload();
+            } else {
+              alert("Error: " + data.error);
+            }
+          });
+      }
+
+      window.onclick = function (event) {
+        const viewModal = document.getElementById("viewModal");
+        const composeModal = document.getElementById("composeModal");
+        if (event.target === viewModal) {
+          closeViewModal();
+        }
+        if (event.target === composeModal) {
+          closeComposeModal();
+        }
+      };
+    </script>
+  </body>
+</html>

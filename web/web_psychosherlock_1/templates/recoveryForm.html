@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set New Password - RelayGrid</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/static/favicon_io/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/static/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/static/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/static/favicon_io/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/static/favicon_io/site.webmanifest" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <style>
+      .gradient-bg {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #1e293b 60%,
+          #0ea5e9 100%
+        );
+        min-height: 100vh;
+      }
+      .glass-effect {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+      }
+      .input-glow:focus {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        border-color: rgba(59, 130, 246, 0.8);
+      }
+      .btn-glow {
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        transition: all 0.3s ease;
+      }
+      .btn-glow:hover {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+        transform: translateY(-2px);
+      }
+    </style>
+  </head>
+  <body class="gradient-bg min-h-screen text-gray-100 flex flex-col">
+    <nav class="glass-effect shadow-2xl sticky top-0 z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+          <a
+            href="/"
+            class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            >RelayGrid</a
+          >
+          <div class="flex gap-3">
+            <a
+              href="/login"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300"
+              >Login</a
+            >
+            <a
+              href="/signup"
+              class="px-6 py-2.5 rounded-lg bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800 font-semibold shadow-lg hover:shadow-cyan-500/50 transition-all duration-300"
+              >Signup</a
+            >
+            <a
+              href="/faq"
+              class="px-6 py-2.5 rounded-lg border-2 border-blue-500 hover:bg-blue-500/20 font-semibold transition-all duration-300"
+              >FAQ</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div
+      class="mx-6 mt-4 px-4 py-3 rounded-lg text-center animate__animated animate__slideInDown {% if category == 'success' %} bg-green-900/50 border-2 border-green-500 text-green-300 {% elif category == 'danger' %} bg-red-900/50 border-2 border-red-500 text-red-300 {% elif category == 'warning' %} bg-yellow-900/50 border-2 border-yellow-500 text-yellow-300 {% else %} bg-blue-900/50 border-2 border-blue-500 text-blue-300 {% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+    <main
+      class="container mx-auto px-6 py-16 flex-1 flex items-center justify-center"
+    >
+      <section class="w-full max-w-md">
+        <div
+          class="glass-effect rounded-3xl shadow-2xl p-10 animate__animated animate__fadeInUp"
+          data-aos="zoom-in"
+        >
+          <div class="text-center mb-8">
+            <h2
+              class="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent mb-3"
+            >
+              Set a New Password
+            </h2>
+            <p class="text-gray-400">
+              Time to make your account even more secure. Choose a new password
+              below!
+            </p>
+          </div>
+          <form method="post" class="space-y-6">
+            <div>
+              <label
+                for="new_password"
+                class="block text-sm font-bold text-gray-300 mb-2"
+                >New Password</label
+              >
+              <input
+                type="password"
+                id="new_password"
+                name="new_password"
+                placeholder="Enter new password"
+                class="w-full px-4 py-3 rounded-xl bg-slate-900/70 border-2 border-blue-500 text-gray-100 placeholder-gray-500 focus:outline-none input-glow transition-all duration-300"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="confirm_password"
+                class="block text-sm font-bold text-gray-300 mb-2"
+                >Confirm New Password</label
+              >
+              <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                placeholder="Re-enter new password"
+                class="w-full px-4 py-3 rounded-xl bg-slate-900/70 border-2 border-blue-500 text-gray-100 placeholder-gray-500 focus:outline-none input-glow transition-all duration-300"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="captcha"
+                class="block text-sm font-bold text-gray-300 mb-2"
+                >CAPTCHA</label
+              >
+              <div class="flex gap-3 items-center mb-3">
+                <img
+                  id="captchaImage"
+                  src=""
+                  alt="CAPTCHA"
+                  class="rounded-lg border-2 border-blue-500 shadow-lg"
+                  style="height: 90px"
+                />
+                <button
+                  type="button"
+                  onclick="refreshCaptcha()"
+                  class="px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 font-semibold shadow-lg transition-all duration-300"
+                >
+                  ↻ Refresh
+                </button>
+              </div>
+              <input
+                type="text"
+                id="captcha"
+                name="captcha"
+                placeholder="Enter CAPTCHA"
+                class="w-full px-4 py-3 rounded-xl bg-slate-900/70 border-2 border-blue-500 text-gray-100 placeholder-gray-500 focus:outline-none input-glow transition-all duration-300"
+                required
+              />
+              <input type="hidden" id="captcha_token" name="captcha_token" />
+            </div>
+            <button
+              type="submit"
+              class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-bold text-lg btn-glow mt-6"
+            >
+              Update Password
+            </button>
+          </form>
+          <div class="mt-6 text-center">
+            <p class="text-gray-400">
+              Changed your mind?
+              <a
+                href="/login"
+                class="text-blue-400 hover:text-blue-300 font-semibold ml-1 transition-colors duration-300"
+                >Log in here</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer
+      class="glass-effect py-8 border-t border-blue-500/30"
+      data-aos="fade-up"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <p class="text-gray-400">&copy; 2025 RelayGrid. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.body.style.visibility = "hidden";
+      });
+      window.addEventListener("load", function () {
+        document.body.style.visibility = "visible";
+      });
+      AOS.init({ once: true, duration: 800, easing: "ease-out-cubic" });
+
+      // Load CAPTCHA on page load
+      async function loadCaptcha() {
+        try {
+          const response = await fetch("/captcha");
+          const data = await response.json();
+          document.getElementById("captchaImage").src = data.captcha;
+          document.getElementById("captcha_token").value = data.token;
+        } catch (error) {
+          console.error("Failed to load CAPTCHA:", error);
+        }
+      }
+
+      function refreshCaptcha() {
+        loadCaptcha();
+        document.getElementById("captcha").value = "";
+      }
+
+      loadCaptcha();
+    </script>
+  </body>
+</html>
