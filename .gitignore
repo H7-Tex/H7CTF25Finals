@@ -22,3 +22,14 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Rust/Cargo build artifacts
+**/target/
+Cargo.lock
+
+# Solana build artifacts
+**/deploy/
+**/*.so
+**/*.d
+!pwn/**/libc.so.6
+!pwn/**/ld-2.35.so

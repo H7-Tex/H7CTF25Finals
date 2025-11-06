@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Nine and Three-Quarters</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>PLATFORM NINE AND THREE-QUARTERS</h1>
+            <p class="subtitle">Seven horcruxes scattered across the server.</p>
+            <p class="subtitle">Find them. Destroy them. Pass through.</p>
+        </header>
+
+        <div class="progress-section">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">0 / 7 HORCRUXES DESTROYED</p>
+        </div>
+
+        <div class="input-section">
+            <input 
+                type="text" 
+                id="flagInput" 
+                placeholder="Enter horcrux flag"
+                autocomplete="off"
+                spellcheck="false"
+            >
+            <button id="validateBtn">VALIDATE</button>
+        </div>
+
+        <div class="message-section">
+            <p id="message"></p>
+        </div>
+
+        <div class="final-section" id="finalSection" style="display: none;">
+            <div class="final-box">
+                <h2>PASSAGE GRANTED</h2>
+                <p class="final-message">All horcruxes destroyed. The platform reveals itself.</p>
+                <p class="final-flag" id="finalFlag"></p>
+            </div>
+        </div>
+
+        <footer>
+            <p>PLATFORM 9¾</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "platform-nine-three-quarters",
+  "version": "1.0.0",
+  "description": "Platform Nine and Three-Quarters - Discord Hunt",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "author": "AbuCTF",
+  "license": "MIT"
+}

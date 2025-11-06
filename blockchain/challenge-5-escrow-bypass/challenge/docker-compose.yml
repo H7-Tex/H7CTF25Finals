@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  escrow-bypass:
+    build:
+      context: ..
+      dockerfile: challenge/Dockerfile
+    ports:
+      - "5005:5005"
+    restart: unless-stopped
+    container_name: escrow-bypass-challenge
