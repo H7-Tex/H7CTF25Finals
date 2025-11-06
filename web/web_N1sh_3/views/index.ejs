@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .header h1 {
+            color: #f0f6fc;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            color: #8b949e;
+            font-size: 1.1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .nav-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-link {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover {
+            background: #21262d;
+            border-color: #30363d;
+            color: #f0f6fc;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .feature-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 2rem;
+            border-radius: 8px;
+            transition: border-color 0.2s ease;
+        }
+        .feature-card:hover {
+            border-color: #8b949e;
+        }
+        .feature-card h3 {
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .feature-card p {
+            color: #8b949e;
+            line-height: 1.5;
+        }
+        .cta-section {
+            background: linear-gradient(45deg, #161b22, #21262d);
+            border: 1px solid #30363d;
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        .cta-section h2 {
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .cta-section p {
+            color: #8b949e;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: #238636;
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 0.5rem;
+            border: 1px solid #238636;
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            background: #2ea043;
+            border-color: #2ea043;
+        }
+        .info-section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        .info-section h3 {
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .info-section h4 {
+            color: #f0f6fc;
+            margin: 1.5rem 0 0.5rem 0;
+            font-weight: 600;
+        }
+        .info-section p {
+            color: #8b949e;
+            margin-bottom: 1rem;
+        }
+        .info-section ul {
+            color: #8b949e;
+            margin-left: 1.5rem;
+        }
+        .info-section li {
+            margin: 0.5rem 0;
+        }
+        .footer {
+            background: #0d1117;
+            border-top: 1px solid #30363d;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        .footer p {
+            color: #6e7681;
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><%= title %></h1>
+        <p>Modern Employee Management & HR Solutions</p>
+    </div>
+
+    <div class="nav-bar">
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/login" class="nav-link">Staff Login</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-grid">
+            <div class="feature-card">
+                <h3>Employee Directory</h3>
+                <p>Comprehensive employee database with advanced search capabilities. Find staff members by name, department, or email address.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>Secure Access</h3>
+                <p>Role-based authentication system ensuring that sensitive employee information is only accessible to authorized personnel.</p>
+            </div>
+            
+            <div class="feature-card">
+                <h3>HR Analytics</h3>
+                <p>Advanced reporting and analytics tools for HR professionals to track employee performance and organizational metrics.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Access Your Employee Portal</h2>
+            <p>Streamline your HR processes with our comprehensive employee management system</p>
+            <a href="/login" class="btn">Staff Login</a>
+        </div>
+
+        <div style="background: #161b22; border: 1px solid #30363d; padding: 2rem; border-radius: 8px;">
+            <h3>About SecureHR Solutions</h3>
+            <p>SecureHR is a leading provider of employee management software, trusted by organizations worldwide. Our platform combines cutting-edge security with user-friendly interfaces to deliver comprehensive HR solutions.</p>
+            
+            <h4>Key Features:</h4>
+            <ul>
+                <li>Advanced employee search and filtering</li>
+                <li>Secure role-based access control</li>
+                <li>Comprehensive reporting tools</li>
+                <li>Real-time employee data management</li>
+                <li>Integration with existing HR systems</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 SecureHR Solutions. All rights reserved.</p>
+        <p>Enterprise Employee Management | Trusted by 500+ Companies Worldwide</p>
+    </div>
+</body>
+</html>

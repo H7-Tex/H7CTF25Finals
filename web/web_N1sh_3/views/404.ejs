@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - SecureHR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 3rem 2rem;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+        }
+        .error-code {
+            font-size: 6rem;
+            font-weight: 600;
+            color: #f85149;
+            margin: 1rem 0;
+        }
+        .error-message {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #f0f6fc;
+            font-weight: 600;
+        }
+        .nav-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #238636;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin: 0.5rem;
+            border: 1px solid #238636;
+            transition: all 0.2s ease;
+        }
+        .nav-button:hover {
+            background: #2ea043;
+            border-color: #2ea043;
+        }
+        .path-info {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            margin: 1rem 0;
+            color: #8b949e;
+            font-size: 14px;
+        }
+        p {
+            color: #8b949e;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <div class="error-message">Page Not Found</div>
+        
+        <div class="path-info">
+            Requested: <%= path %>
+        </div>
+        
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        
+        <% if (hint) { %>
+            <div style="background: #490202; border: 1px solid #f85149; color: #f85149; padding: 1rem; border-radius: 6px; margin: 1rem 0;">
+                <strong>Hint:</strong> <%= hint %>
+            </div>
+        <% } %>
+        
+        <div>
+            <a href="/" class="nav-button">Home</a>
+            <a href="/login" class="nav-button">Login</a>
+        </div>
+    </div>
+</body>
+</html>

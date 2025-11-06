@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login - SecureHR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header h1 {
+            color: #f0f6fc;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .header p {
+            color: #8b949e;
+            margin-top: 0.5rem;
+        }
+        .nav-bar {
+            background: #161b22;
+            border-bottom: 1px solid #30363d;
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-link {
+            color: #c9d1d9;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: #21262d;
+            border-color: #30363d;
+            color: #f0f6fc;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .login-section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .login-section h2 {
+            color: #f0f6fc;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .login-section p {
+            color: #8b949e;
+            margin-bottom: 2rem;
+        }
+        .login-form {
+            margin-top: 2rem;
+        }
+        .form-group {
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #f0f6fc;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            color: #c9d1d9;
+            font-size: 14px;
+            transition: border-color 0.2s ease;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #1f6feb;
+            box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.3);
+        }
+        input::placeholder {
+            color: #6e7681;
+        }
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #238636;
+            color: #ffffff;
+            border: 1px solid #238636;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        button:hover {
+            background: #2ea043;
+            border-color: #2ea043;
+        }
+        .error {
+            background: #490202;
+            border: 1px solid #f85149;
+            color: #f85149;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-size: 14px;
+        }
+        .back-link {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover {
+            color: #79c0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Staff Login</h1>
+        <p>Access your employee portal</p>
+    </div>
+
+    <div class="nav-bar">
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/login" class="nav-link active">Staff Login</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="login-section">
+            <h2>Employee Login Portal</h2>
+            <p>Please enter your credentials to access the employee management system.</p>
+            
+            <form method="POST" action="/login" class="login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <% if (error) { %>
+            <div class="error">
+                <strong>Login Failed:</strong> <%= error %>
+            </div>
+        <% } %>
+
+        <% if (hint) { %>
+            <div class="hint">
+                <strong>Hint:</strong> <%= hint %>
+            </div>
+        <% } %>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

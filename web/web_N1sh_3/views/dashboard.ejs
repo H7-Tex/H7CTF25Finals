@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - SecureHR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+            border-bottom: 1px solid #30363d;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .header h1 {
+            color: #f0f6fc;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .welcome-section {
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .welcome-section h2 {
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .user-info {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            padding: 1.5rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        .user-info h3 {
+            color: #f0f6fc;
+            margin-bottom: 0.5rem;
+        }
+        .user-info p {
+            color: #8b949e;
+            margin: 0.5rem 0;
+        }
+        .success {
+            background: #0f5132;
+            border: 1px solid #238636;
+            color: #3fb950;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+        .navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .nav-button {
+            padding: 0.75rem 1.5rem;
+            background: #238636;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            border: 1px solid #238636;
+            transition: all 0.2s ease;
+        }
+        .nav-button:hover {
+            background: #2ea043;
+            border-color: #2ea043;
+        }
+        .logout-btn {
+            background: #da3633;
+            border-color: #da3633;
+        }
+        .logout-btn:hover {
+            background: #f85149;
+            border-color: #f85149;
+        }
+        .admin-section {
+            background: #21262d;
+            border: 1px solid #30363d;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .admin-section h3 {
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+        }
+        .admin-section p {
+            color: #8b949e;
+        }
+        .admin-section ul {
+            color: #8b949e;
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+        .admin-section li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Employee Dashboard</h1>
+    </div>
+
+    <div class="container">
+        <% if (message) { %>
+            <div class="success">
+                <%= message %>
+            </div>
+        <% } %>
+
+        <div class="welcome-section">
+            <h2>Welcome, <%= user.username %>!</h2>
+            <p>You have successfully logged into the SecureHR employee management system.</p>
+            
+            <div class="user-info">
+                <h3>Your Profile Information</h3>
+                <p><strong>Username:</strong> <%= user.username %></p>
+                <p><strong>Email:</strong> <%= user.email %></p>
+                <p><strong>Role:</strong> <%= user.role %></p>
+                <p><strong>Employee ID:</strong> #<%= user.id %></p>
+            </div>
+        </div>
+
+        <% if (user.role === 'admin') { %>
+            <div class="admin-section">
+                <h3>Administrator Access</h3>
+                <p>You have administrative privileges in the system. You can:</p>
+                <ul>
+                    <li>Access all employee records</li>
+                    <li>Generate system reports</li>
+                    <li>Manage user accounts</li>
+                    <li>View system logs</li>
+                </ul>
+            </div>
+        <% } %>
+
+        <div class="navigation">
+            <a href="/search" class="nav-button">Search Employees</a>
+            <% if (user.role === 'admin') { %>
+                <a href="#" onclick="generateReport()" class="nav-button">Generate Report</a>
+            <% } %>
+            <a href="/" class="nav-button logout-btn">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        function generateReport() {
+            const reportType = prompt("Enter report type (e.g., 'employee_summary', 'department_stats'):");
+            if (!reportType) return;
+            
+            fetch('/admin/reports', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ report_type: reportType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                } else {
+                    alert('Report generated successfully: ' + JSON.stringify(data));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to generate report');
+            });
+        }
+    </script>
+</body>
+</html>

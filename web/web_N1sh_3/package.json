@@ -1,0 +1,30 @@
+{
+  "name": "h7ctf-sqli-wildcards",
+  "version": "1.0.0",
+  "description": "Hard SQL Injection CTF Challenge with Wildcards - H7CTF",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.7",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": [
+    "ctf",
+    "sql-injection",
+    "wildcards",
+    "security",
+    "challenge"
+  ],
+  "author": "H7CTF Team",
+  "license": "MIT"
+}

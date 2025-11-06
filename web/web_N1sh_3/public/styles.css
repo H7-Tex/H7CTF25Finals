@@ -1,0 +1,106 @@
+/* H7CTF SQL Injection Challenge Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* Syntax highlighting for code blocks */
+.sql-highlight {
+    background: #2d3436;
+    color: #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    overflow-x: auto;
+}
+
+.sql-keyword {
+    color: #74b9ff;
+    font-weight: bold;
+}
+
+.sql-string {
+    color: #00b894;
+}
+
+.sql-comment {
+    color: #636e72;
+    font-style: italic;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+    
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-button {
+        width: 80%;
+        text-align: center;
+        margin: 5px 0;
+    }
+    
+    input[type="text"], input[type="password"] {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    .payload-examples {
+        font-size: 12px;
+    }
+}
+
+/* Animation for success/error messages */
+.error, .hint, .message {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading spinner for async operations */
+.loading {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #6c5ce7;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
