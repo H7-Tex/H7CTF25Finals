@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAuth - Enterprise Authentication Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- TODO: Remove debug endpoints before production deployment -->
+    <!-- DEV NOTE: /api/auth/debug still accessible for troubleshooting -->
+    <!-- SECURITY: User enumeration endpoint needs access control -->
+</head>
+<body>
+    <header>
+        <h1>SecureAuth</h1>
+    </header>
+
+    <main>
+        <div class="hero-section">
+            <h2>Enterprise Authentication Platform</h2>
+            <p>Secure, scalable, and seamless access management for modern organizations. Protect your digital assets with enterprise-grade authentication solutions.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>Multi-Factor Authentication</h3>
+                    <p>Advanced security protocols with biometric verification, hardware tokens, and SMS-based authentication to ensure maximum protection.</p>
+                </div>
+                <div class="feature">
+                    <h3>Single Sign-On Integration</h3>
+                    <p>Streamlined access across all corporate applications with seamless SAML and OAuth integration for enhanced productivity.</p>
+                </div>
+                <div class="feature">
+                    <h3>Advanced Analytics</h3>
+                    <p>Real-time monitoring and comprehensive audit trails with behavioral analytics to detect and prevent unauthorized access attempts.</p>
+                </div>
+            </div>
+            
+            <div class="cta-section">
+                <a href="login.html" class="login-btn">Access Portal</a>
+                <a href="register.html" class="register-btn">Request Access</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SecureAuth Corporation. All rights reserved. Privacy Policy | Terms of Service</p>
+        <!-- Version: SecureAuth v2.1.3 | Build: 20241106 -->
+    </footer>
+
+    <script>
+        // Development console logging (remove in production)
+        if (window.location.hostname === 'localhost' || window.location.hostname.includes('dev')) {
+            console.log('SecureAuth Debug Mode Active');
+            console.log('Version: v2.1.3');
+            console.log('Available API endpoints: /api/auth/login, /api/auth/register');
+            // console.log('Debug endpoint: /api/auth/debug'); // TODO: Remove this line
+            // console.log('User directory: /api/auth/users'); // Internal use only
+            console.log('For support contact: admin@secureauth.local');
+        }
+    </script>
+</body>
+</html>

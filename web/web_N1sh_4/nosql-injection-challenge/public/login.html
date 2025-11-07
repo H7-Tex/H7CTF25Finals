@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAuth - Authentication Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>SecureAuth</h1>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Sign In</h2>
+            <div class="login-form-content">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit">Sign In</button>
+                </form>
+                <div id="result"></div>
+                <p>Need access? <a href="register.html">Request account</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SecureAuth Corporation. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            let payload = { username, password };
+            
+            // Parse potential JSON input for advanced queries
+            try {
+                if (username.startsWith('{')) {
+                    payload.username = JSON.parse(username);
+                }
+            } catch (e) {
+                // Keep as string if parsing fails
+            }
+            
+            try {
+                if (password.startsWith('{')) {
+                    payload.password = JSON.parse(password);
+                }
+            } catch (e) {
+                // Keep as string if parsing fails
+            }
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await response.json();
+                const resultDiv = document.getElementById('result');
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="success">
+                            <strong>Authentication Successful</strong><br>
+                            ${data.isAdmin ? 'Admin access granted!' : 'User access granted!'}<br>
+                            Redirecting to dashboard...
+                        </div>
+                    `;
+                    
+                    // Store user data and redirect
+                    sessionStorage.setItem('user', data.user);
+                    sessionStorage.setItem('flag', data.flag);
+                    sessionStorage.setItem('isAdmin', data.isAdmin);
+                    
+                    setTimeout(() => {
+                        window.location.href = data.redirect || '/dashboard.html';
+                    }, 1500);
+                } else {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            <strong>Authentication Failed</strong><br>
+                            ${data.message}
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <div class="error">
+                        <strong>System Error</strong><br>
+                        Unable to process authentication request
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

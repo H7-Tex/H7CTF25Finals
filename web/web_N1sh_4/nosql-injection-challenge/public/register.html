@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureAuth - Account Registration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>SecureAuth</h1>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Request Access</h2>
+            <div class="login-form-content">
+                <form action="/api/auth/register" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Create a secure password" required>
+                    </div>
+                    <button type="submit">Submit Request</button>
+                </form>
+                <p>Already have access? <a href="login.html">Sign in here</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 SecureAuth Corporation. All rights reserved.</p>
+    </footer>
+</body>
+</html>
