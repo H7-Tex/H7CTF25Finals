@@ -1,0 +1,9 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+*.md
+.dockerignore
+docker-compose.yml
+setup-mongodb.*
+test_nosql_injection.sh
