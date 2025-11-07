@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  Coffee-Would-Be-Nice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
