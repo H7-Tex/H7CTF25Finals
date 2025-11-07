@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  prompt-injection:
+    build: .
+    container_name: ctf_prompt_injection
+    ports:
+      - "5000:5000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - SECRET_FLAG=${SECRET_FLAG}
+      - RATE_LIMIT_SECONDS=5
+      - MAX_INPUT_LENGTH=500
+      - MAX_OUTPUT_TOKENS=400
+      - FLASK_ENV=production
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+
+networks:
+  default:
+    driver: bridge
