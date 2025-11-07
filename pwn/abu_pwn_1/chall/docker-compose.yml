@@ -6,8 +6,5 @@ services:
     image: abu_pwn_1
     ports:
       - "1337:1337"
-    security_opt:
-      - seccomp:unconfined
-    cap_add:
-      - SYS_ADMIN
+    privileged: true
     restart: unless-stopped
