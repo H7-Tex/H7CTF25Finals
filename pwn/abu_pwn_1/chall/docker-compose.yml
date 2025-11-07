@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  abu_pwn_1:
+    build: .
+    ports:
+      - "1337:1337"
+    security_opt:
+      - seccomp:unconfined
+    restart: unless-stopped
