@@ -12,7 +12,7 @@ COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chown root:root /docker-entrypoint.sh && \
     chmod 755 /docker-entrypoint.sh && \
     chown ctf:ctf /home/ctf/challenge && \
-    chmod 777 /home/ctf/challenge
+    chmod 555 /home/ctf/challenge
 
 USER ctf
 EXPOSE 1337
