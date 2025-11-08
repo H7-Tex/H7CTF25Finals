@@ -1,0 +1,15 @@
+{
+  "name": "pp-challenge-lodash",
+  "version": "1.0.0",
+  "description": "CTF challenge: prototype pollution via lodash <4.17.11 (vulnerable merge)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "lodash": "4.17.10"
+  },
+  "author": "ctf",
+  "license": "MIT"
+}
