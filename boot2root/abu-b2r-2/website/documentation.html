@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - H7Corp Microservices</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="brand-text">H7CORP</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="platform.html">Platform</a></li>
+                <li><a href="documentation.html" class="active">Documentation</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="content">
+            <div class="container">
+                <h1>Documentation</h1>
+                
+                <div class="content-section">
+                    <h2>Getting Started</h2>
+                    <p>Welcome to the CPR platform documentation. This guide provides an overview of platform capabilities and integration patterns for enterprise applications.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Platform Overview</h2>
+                    <p>CPR provides a comprehensive suite of APIs for authentication, user management, data services, and system monitoring. All services follow RESTful principles with support for various data formats including JSON, XML, and binary protocols.</p>
+                    
+                    <div class="code-block">
+                        <code>
+// Example: Standard API request pattern<br>
+POST /api/v1/auth/login<br>
+Content-Type: application/json<br>
+<br>
+{<br>
+&nbsp;&nbsp;"username": "user@example.com",<br>
+&nbsp;&nbsp;"password": "secure_password"<br>
+}
+                        </code>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Authentication</h2>
+                    <p>All API requests require valid authentication tokens obtained through the authentication service. Tokens are issued with configurable expiration times and can be refreshed using the token refresh endpoint. Multi-factor authentication is supported for enhanced security.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Service Integration</h2>
+                    <p>The platform supports multiple integration methods including direct API calls, SDKs for popular programming languages, webhook notifications, and message queue integration. Choose the method that best fits your application architecture.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Data Formats</h2>
+                    <p>Services accept requests in multiple formats (JSON, XML, Protocol Buffers, MessagePack) with automatic content negotiation. Response formats can be specified via Accept headers or query parameters.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Rate Limiting</h2>
+                    <p>API endpoints enforce rate limiting to ensure fair usage and system stability. Rate limits are applied per authentication token with different tiers available based on subscription level.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Error Handling</h2>
+                    <p>The platform uses standard HTTP status codes and detailed error messages. Client implementations should handle failures gracefully and implement exponential backoff for retry logic.</p>
+                </div>
+
+                <div class="content-section">
+                    <h2>Support Resources</h2>
+                    <p>For detailed API specifications, code examples, and integration guides, access the internal developer portal. Technical support is available through the enterprise support channel.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 H7Corp Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

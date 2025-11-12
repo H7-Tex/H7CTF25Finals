@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package cpr.backup;
+
+// Backup Service
+service BackupService {
+  rpc CreateBackup(BackupRequest) returns (BackupResponse);
+  rpc RestoreBackup(RestoreRequest) returns (RestoreResponse);
+  rpc ListBackups(ListBackupsRequest) returns (ListBackupsResponse);
+}
+
+// Create a backup
+message BackupRequest {
+  string user_id = 1;
+  string backup_name = 2;
+}
+
+message BackupResponse {
+  bool success = 1;
+  string message = 2;
+  string backup_id = 3;
+}
+
+// Restore from backup
+message RestoreRequest {
+  string user_id = 1;
+  string backup_name = 2;
+  bytes backup_data = 3;
+}
+
+message RestoreResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// List available backups
+message ListBackupsRequest {
+  string user_id = 1;
+}
+
+message ListBackupsResponse {
+  bool success = 1;
+  repeated BackupInfo backups = 2;
+}
+
+message BackupInfo {
+  string backup_id = 1;
+  string backup_name = 2;
+  string created_at = 3;
+  int64 size = 4;
+}

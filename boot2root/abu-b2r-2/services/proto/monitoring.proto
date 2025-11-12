@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package cpr.monitoring;
+
+// Monitoring Service
+service MetricsService {
+  rpc GetSystemMetrics(MetricsRequest) returns (MetricsResponse);
+  rpc GetServiceHealth(HealthRequest) returns (HealthResponse);
+  rpc ListEndpoints(EndpointsRequest) returns (EndpointsResponse);
+}
+
+// Get system metrics
+message MetricsRequest {
+  string user_id = 1;
+}
+
+message MetricsResponse {
+  bool success = 1;
+  SystemMetrics metrics = 2;
+}
+
+message SystemMetrics {
+  double cpu_usage = 1;
+  double memory_usage = 2;
+  int64 uptime_seconds = 3;
+  int32 active_connections = 4;
+}
+
+// Get service health
+message HealthRequest {
+  string user_id = 1;
+}
+
+message HealthResponse {
+  bool success = 1;
+  repeated ServiceStatus services = 2;
+}
+
+message ServiceStatus {
+  string service_name = 1;
+  string status = 2;
+  int64 uptime = 3;
+}
+
+// List available endpoints
+message EndpointsRequest {
+  string user_id = 1;
+}
+
+message EndpointsResponse {
+  bool success = 1;
+  repeated Endpoint endpoints = 2;
+}
+
+message Endpoint {
+  string service = 1;
+  string method = 2;
+  string description = 3;
+}

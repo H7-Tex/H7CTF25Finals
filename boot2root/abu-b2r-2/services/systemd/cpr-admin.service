@@ -1,0 +1,18 @@
+[Unit]
+Description=CPR Admin Socket Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/usr/local/lib/cpr
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /usr/local/lib/cpr/collector.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

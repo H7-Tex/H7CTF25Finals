@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cpr.user;
+
+// User Management Service
+service UserService {
+  rpc GetUserDetails(UserRequest) returns (UserResponse);
+  rpc UpdateProfile(UpdateProfileRequest) returns (UpdateProfileResponse);
+  rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+}
+
+// Get user details
+message UserRequest {
+  string user_id = 1;
+}
+
+message UserResponse {
+  bool success = 1;
+  string user_id = 2;
+  string username = 3;
+  string email = 4;
+  string bio = 5;
+  string role = 6;
+  int32 privilege_level = 7;
+  string token = 8;
+}
+
+// Update user profile
+message UpdateProfileRequest {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+  string bio = 4;
+  bool is_admin = 5;
+  int32 privilege_level = 6;
+}
+
+message UpdateProfileResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// List all users
+message ListUsersRequest {
+  string user_id = 1;
+}
+
+message ListUsersResponse {
+  bool success = 1;
+  repeated UserInfo users = 2;
+}
+
+message UserInfo {
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+  string role = 4;
+}

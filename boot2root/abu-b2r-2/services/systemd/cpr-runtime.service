@@ -1,0 +1,18 @@
+[Unit]
+Description=CPR Runtime gRPC Service
+After=network.target
+
+[Service]
+Type=simple
+User=svc-runtime
+Group=svc-runtime
+WorkingDirectory=/opt/cpr/app
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /opt/cpr/app/server.py
+Restart=on-failure
+RestartSec=5s
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

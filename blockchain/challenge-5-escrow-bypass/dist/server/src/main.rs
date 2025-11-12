@@ -5,7 +5,7 @@ use solana_sdk::{
     pubkey::Pubkey,
     signature::{Keypair, Signer},
 };
-use borsh::BorshSerialize;
+use borsh::{BorshSerialize, BorshDeserialize};
 use std::{
     error::Error,
     fs,
@@ -14,11 +14,11 @@ use std::{
 };
 
 const STARTING_BALANCE: u64 = 5_000_000_000;
-const ESCROW_AMOUNT: u64 = 80_000_000_000;
-const WIN_THRESHOLD: u64 = 75_000_000_000;
+const ESCROW_AMOUNT: u64 = 50_000_000_000;
+const WIN_THRESHOLD: u64 = 45_000_000_000;
 const SERVER_PORT: u16 = 5005;
 
-#[derive(BorshSerialize)]
+#[derive(BorshSerialize, BorshDeserialize)]
 struct Escrow {
     depositor: Pubkey,
     recipient: Pubkey,
@@ -126,36 +126,47 @@ async fn handle_connection(mut socket: TcpStream) -> Result<(), Box<dyn Error>> 
     writeln!(socket, "[*] Ready for your exploit.")?;
     writeln!(socket, "[*] Send your solve program to begin.\n")?;
 
-    let ret = builder.input_program().unwrap();
+    let solve_program_id = match builder.input_program() {
+        Ok(pubkey) => pubkey,
+        Err(e) => {
+            writeln!(socket, "Error: cannot add solve program - {}", e)?;
+            return Ok(());
+        }
+    };
     
     writeln!(socket, "\n[*] Running your exploit program...\n")?;
 
-    builder
-        .builder
-        .execute_user_code_instruction(user.insecure_clone(), &ret)
-        .expect("Failed to execute user instruction");
+    let mut challenge = builder.build().await;
+    
+    let solve_ix = challenge.read_instruction(solve_program_id)?;
+    challenge.run_ixs_full(&[solve_ix], &[&user], &user.pubkey()).await?;
     
     writeln!(socket, "[*] Exploit execution complete.")?;
     writeln!(socket, "[*] Checking win condition...\n")?;
 
-    let final_user_account = builder
-        .builder
-        .get_account(&user.pubkey())
+    // Check user's final balance
+    let final_user_account = challenge
+        .ctx
+        .banks_client
+        .get_account(user.pubkey())
+        .await?
         .expect("Failed to get user account");
     
     let final_balance = final_user_account.lamports;
+    let stolen_amount = final_balance.saturating_sub(STARTING_BALANCE);
     
     writeln!(socket, "═══════════════════════════════════════════════")?;
     writeln!(socket, "Final State:")?;
     writeln!(socket, "  Your Balance: {} SOL", final_balance / 1_000_000_000)?;
+    writeln!(socket, "  Stolen: {} SOL", stolen_amount / 1_000_000_000)?;
     writeln!(socket, "  Required: {} SOL", WIN_THRESHOLD / 1_000_000_000)?;
     writeln!(socket, "═══════════════════════════════════════════════\n")?;
 
-    if final_balance >= WIN_THRESHOLD {
+    if stolen_amount >= WIN_THRESHOLD {
         writeln!(socket, "[+] Success! You bypassed the authorization.")?;
         writeln!(socket, "[+] Flag: {}", flag.trim())?;
     } else {
-        writeln!(socket, "[-] Failed. Balance too low.")?;
+        writeln!(socket, "[-] Failed. Not enough SOL stolen.")?;
     }
     
     Ok(())

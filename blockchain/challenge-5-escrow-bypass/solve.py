@@ -11,6 +11,7 @@ PORT = int(os.getenv("CHALLENGE_PORT", "5005"))
 SOLVE_PATH = "solve/target/deploy/escrow_bypass_solve.so"
 
 def main():
+    global HOST, PORT
     if len(sys.argv) > 1:
         HOST = sys.argv[1]
     if len(sys.argv) > 2:

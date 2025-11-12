@@ -1,0 +1,42 @@
+# Vagrant
+.vagrant/
+*.box
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Generated proto files
+*_pb2.py
+*_pb2_grpc.py
+
+# Backup files
+*.bak
+*.backup

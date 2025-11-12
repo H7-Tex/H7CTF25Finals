@@ -1,0 +1,82 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Use Ubuntu 22.04 LTS
+  config.vm.box = "ubuntu/jammy64"
+  
+  # VM Configuration
+  config.vm.hostname = "cpr-gateway"
+  config.vm.boot_timeout = 600
+  
+  # Synced folder
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  
+  # Network Configuration
+  config.vm.network "private_network", ip: "192.168.56.11"
+  
+  # Port forwarding
+  config.vm.network "forwarded_port", guest: 80, host: 8081        # H7Corp Website
+  config.vm.network "forwarded_port", guest: 50051, host: 50051    # gRPC Service
+  config.vm.network "forwarded_port", guest: 22, host: 2225, id: "ssh"
+  
+  # VirtualBox specific settings
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "CPR-B2R"
+    vb.memory = "2048"
+    vb.cpus = 2
+    vb.gui = false
+    
+    # Additional settings for stability
+    vb.customize ["modifyvm", :id, "--uart1", "0x3F8", "4"]
+    vb.customize ["modifyvm", :id, "--uartmode1", "file", File::NULL]
+  end
+  
+  # Provisioning Scripts
+  
+  # 1. System setup
+  config.vm.provision "shell", name: "system-setup", path: "provisioning/00-system-setup.sh"
+  
+  # 2. Install gRPC and Python dependencies
+  config.vm.provision "shell", name: "install-grpc", path: "provisioning/01-install-grpc.sh"
+  
+  # 3. Create users and groups
+  config.vm.provision "shell", name: "setup-users", path: "provisioning/02-setup-users.sh"
+  
+  # 4. Setup gRPC services
+  config.vm.provision "shell", name: "setup-grpc-services", path: "provisioning/03-setup-grpc-services.sh"
+  
+  # 5. Setup database
+  config.vm.provision "shell", name: "setup-database", path: "provisioning/04-setup-database.sh"
+  
+  # 6. Setup admin Unix socket
+  config.vm.provision "shell", name: "setup-admin-socket", path: "provisioning/05-setup-admin-socket.sh"
+  
+  # 7. Setup website
+  config.vm.provision "shell", name: "setup-website", path: "provisioning/06-setup-website.sh"
+  
+  # 8. Place flags
+  config.vm.provision "shell", name: "place-flags", path: "provisioning/07-place-flags.sh"
+  
+  # 9. Setup pivot path (svc-runtime -> abu)
+  config.vm.provision "shell", name: "setup-pivot", path: "provisioning/08-setup-pivot.sh"
+  
+  # 10. Setup git repository leak
+  config.vm.provision "shell", name: "setup-git-leak", path: "provisioning/11-setup-git-leak.sh"
+  
+  # Final message
+  config.vm.provision "shell", name: "final-setup", inline: <<-SHELL
+    echo ""
+    echo "=========================================="
+    echo "  CPR Boot2Root Challenge Ready"
+    echo "=========================================="
+    echo ""
+    echo "Target IP:      192.168.56.11"
+    echo "Website:        http://192.168.56.11"
+    echo "gRPC Service:   192.168.56.11:50051"
+    echo ""
+    echo "Start enumeration with nmap and web recon"
+    echo ""
+    echo "=========================================="
+  SHELL
+end
