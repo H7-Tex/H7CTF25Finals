@@ -1,25 +1,26 @@
-# H7CTF 2025 Finals
+`H7CTF 2025 Finals`
 
-Challenges and source for the H7CTF 2025 Finals. H7CTF is an international CTF run by Abu and team H7Tex at SRMIST.
+- **ai**
+  - [AI Guardian](ai/guardian) `Solvz`
+- **blockchain**
+  - [Token Overflow](blockchain/overflow) `Abu`, [Escrow Bypass](blockchain/escrow) `Abu`
+- **boot2root**
+  - [CPR](boot2root/cpr) `Abu`
+- **crypto**
+  - [Coffee Would Be Nice](crypto/coffee) `Solvz`
+- **misc**
+  - [Insanity Check](misc/insanity) `Abu`
+- **pwn**
+  - [jail-jail](pwn/jail) `Abu`, [K980](pwn/k980) `Abu`
+- **web**
+  - [SecureHR](web/securehr) `N1sh`, [SecureAuth](web/secureauth) `N1sh`, [Todo](web/todo) `N1sh`, [RelayGrid](web/relaygrid) `PsychoSherlock`, [Fetch The Flag](web/fetch) `PsychoSherlock`
 
-## Challenges
+each challenge is `<category>/<slug>/` with a `README.md` (description, how to run it, solution) next to the source we deployed, the handout and a solve where we had one
 
-| Category | Challenge | Folder | Author |
-| --- | --- | --- | --- |
-| AI | AI Guardian | `ai/guardian` | Solvz |
-| Blockchain | Token Overflow | `blockchain/overflow` | AbuCTF |
-| Blockchain | Escrow Bypass | `blockchain/escrow` | AbuCTF |
-| Boot2Root | CPR | `boot2root/cpr` | AbuCTF |
-| Crypto | Coffee Would Be Nice | `crypto/coffee` | Solvz |
-| Misc | Insanity Check | `misc/insanity` | Abu |
-| Pwn | jail-jail | `pwn/jail` | Abu |
-| Pwn | K980 | `pwn/k980` | Abu |
-| Web | SecureHR | `web/securehr` | N1sh |
-| Web | SecureAuth | `web/secureauth` | N1sh |
-| Web | Todo | `web/todo` | N1sh |
-| Web | RelayGrid | `web/relaygrid` | PsychoSherlock |
-| Web | Fetch The Flag | `web/fetch` | PsychoSherlock |
+remote ones have a `Dockerfile` or `docker-compose.yml` at the top, so spinning one up is just
 
-## Layout
+```
+cd crypto/coffee && docker compose up
+```
 
-Each challenge folder has a `README.md` with the description, how to run it and the solution. The rest is the source as it was deployed: a `Dockerfile` or `docker-compose.yml` for hosted challenges, a `Vagrantfile` for the boot2root box, the handout zip for pwn, and `solve.py` / `solve/` where there is a solver.
+`boot2root/cpr` is a Vagrant box (`Vagrantfile`), not Docker
