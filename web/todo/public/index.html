@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Todo - Prototype Pollution CTF</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
+      h1 { color: #222 }
+      ul { padding-left: 1.2rem }
+      .task { margin: .4rem 0 }
+      form { margin-top: 1rem }
+      input[type=text] { width: 70%; padding: .4rem }
+      button { padding: .45rem .7rem }
+      .note { color: #666; font-size: .9rem }
+    </style>
+  </head>
+  <body>
+    <h1>Todo - Minimal</h1>
+    <p class="note">You are viewing the site as a guest. Type a task and click Add.</p>
+
+    <div id="panel">
+      <ul id="tasks"></ul>
+
+      <form id="addForm">
+        <input id="taskInput" type="text" placeholder="Type a task and press Add" autocomplete="off" />
+        <button type="submit">Add</button>
+      </form>
+    </div>
+
+    <p class="note">This is a simple app used for a security challenge. The UI does not reveal internal behavior.</p>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
